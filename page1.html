@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐾 哈基米法庭 - 输入页面</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-brown: #8B7355;
+            --secondary-beige: #D2B48C;
+            --accent-tan: #DEB887;
+            --soft-cream: #F5F5DC;
+            --light-bg: #FAF0E6;
+            --text-dark: #654321;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'PingFang SC', 'Microsoft YaHei', cursive;
+            background: linear-gradient(135deg, #E6D2AA 0%, #D2B48C 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(139, 115, 85, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-brown), var(--accent-tan), var(--secondary-beige));
+        }
+        
+        .header {
+            background: linear-gradient(45deg, var(--primary-brown), var(--secondary-beige));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: var(--light-bg);
+        }
+        
+        .nav-btn {
+            background: var(--accent-tan);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--primary-brown);
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .input-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .user-input {
+            background: var(--light-bg);
+            padding: 25px;
+            border-radius: 20px;
+            border: 3px dashed var(--secondary-beige);
+        }
+        
+        .user-input h3 {
+            color: var(--primary-brown);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4em;
+        }
+        
+        .user-input h3 .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2em;
+        }
+        
+        .user-a .avatar { background: var(--primary-brown); }
+        .user-b .avatar { background: var(--accent-tan); }
+        
+        .nickname-input {
+            margin-bottom: 15px;
+        }
+        
+        .nickname-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+        
+        .nickname-input input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--secondary-beige);
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .input-block {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .input-block label {
+            font-weight: bold;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 15px;
+            border: 2px solid var(--secondary-beige);
+            border-radius: 15px;
+            resize: vertical;
+            font-size: 14px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-brown);
+            box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, var(--primary-brown), var(--secondary-beige));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 115, 85, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--accent-tan), #E6D2AA);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💬 说说心里话</h1>
+            <p>请双方分别描述事实经过和内心感受</p>
+        </div>
+        
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-home"></i> 返回首页
+            </a>
+            <a href="page3.html" class="nav-btn">
+                <i class="fas fa-history"></i> 查看历史
+            </a>
+        </div>
+        
+        <div class="content">
+            <h2 class="section-title"><i class="fas fa-heart"></i> 双视角输入</h2>
+            
+            <div class="input-section">
+                <div class="user-input user-a">
+                    <h3><span class="avatar">🐱</span>甲方视角</h3>
+                    <div class="nickname-input">
+                        <label>昵称</label>
+                        <input type="text" id="nicknameA" placeholder="请输入您的昵称" value="小可爱">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-block">
+                            <label><i class="fas fa-clipboard-list"></i> 事实经过</label>
+                            <textarea placeholder="请描述具体发生了什么...">昨天约会迟到一小时，说好一起看电影却临时加班</textarea>
+                        </div>
+                        <div class="input-block">
+                            <label><i class="fas fa-heart"></i> 内心感受</label>
+                            <textarea placeholder="你此刻的心情是...">感觉被忽视，心里空落落的，很伤心</textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="user-input user-b">
+                    <h3><span class="avatar">🐶</span>乙方视角</h3>
+                    <div class="nickname-input">
+                        <label>昵称</label>
+                        <input type="text" id="nicknameB" placeholder="请输入您的昵称" value="小伙伴">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-block">
+                            <label><i class="fas fa-clipboard-list"></i> 事实经过</label>
+                            <textarea placeholder="请描述具体发生了什么...">昨天临时加班无法准时赴约，提前发了消息但可能没收到</textarea>
+                        </div>
+                        <div class="input-block">
+                            <label><i class="fas fa-heart"></i> 内心感受</label>
+                            <textarea placeholder="你此刻的心情是...">工作压力大，希望得到理解而不是指责</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-secondary" onclick="clearInputs()">
+                    <i class="fas fa-eraser"></i> 清空输入
+                </button>
+                <button class="btn" onclick="analyzeAndProceed()">
+                    <i class="fas fa-paw"></i> 开始分析
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function clearInputs() {
+            document.getElementById('nicknameA').value = '';
+            document.getElementById('nicknameB').value = '';
+            document.querySelectorAll('textarea').forEach(textarea => {
+                textarea.value = '';
+            });
+        }
+        
+        function analyzeAndProceed() {
+            const nicknameA = document.getElementById('nicknameA').value || '甲方';
+            const nicknameB = document.getElementById('nicknameB').value || '乙方';
+            
+            const factA = document.querySelector('.user-a .input-block:nth-child(1) textarea').value;
+            const feelingA = document.querySelector('.user-a .input-block:nth-child(2) textarea').value;
+            const factB = document.querySelector('.user-b .input-block:nth-child(1) textarea').value;
+            const feelingB = document.querySelector('.user-b .input-block:nth-child(2) textarea').value;
+            
+            if (!factA && !feelingA && !factB && !feelingB) {
+                alert('请至少填写一方的信息');
+                return;
+            }
+            
+            // 保存当前数据到localStorage
+            const currentData = {
+                nicknameA: nicknameA,
+                nicknameB: nicknameB,
+                factA: factA,
+                feelingA: feelingA,
+                factB: factB,
+                feelingB: feelingB,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('currentHakimiData', JSON.stringify(currentData));
+            
+            // 跳转到分析页面
+            window.location.href = 'page2.html';
+        }
+        
+        // 页面加载时恢复上次输入
+        window.onload = function() {
+            const savedData = localStorage.getItem('currentHakimiData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                document.getElementById('nicknameA').value = data.nicknameA;
+                document.getElementById('nicknameB').value = data.nicknameB;
+                document.querySelector('.user-a .input-block:nth-child(1) textarea').value = data.factA;
+                document.querySelector('.user-a .input-block:nth-child(2) textarea').value = data.feelingA;
+                document.querySelector('.user-b .input-block:nth-child(1) textarea').value = data.factB;
+                document.querySelector('.user-b .input-block:nth-child(2) textarea').value = data.feelingB;
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐾 哈基米法庭 - 暖心调解小窝</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-brown: #8B7355;
+            --secondary-beige: #D2B48C;
+            --accent-tan: #DEB887;
+            --soft-cream: #F5F5DC;
+            --light-bg: #FAF0E6;
+            --text-dark: #654321;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'PingFang SC', 'Microsoft YaHei', cursive;
+            background: linear-gradient(135deg, #E6D2AA 0%, #D2B48C 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(139, 115, 85, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-brown), var(--accent-tan), var(--secondary-beige));
+        }
+        
+        .header {
+            background: linear-gradient(45deg, var(--primary-brown), var(--secondary-beige));
+            color: white;
+            padding: 40px 30px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .welcome-section {
+            padding: 40px 30px;
+            text-align: center;
+            background: var(--light-bg);
+        }
+        
+        .welcome-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .welcome-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: var(--primary-brown);
+        }
+        
+        .welcome-text {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5em;
+            color: var(--primary-brown);
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--primary-brown);
+            margin-bottom: 10px;
+        }
+        
+        .feature-desc {
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, var(--primary-brown), var(--secondary-beige));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 115, 85, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--accent-tan), #E6D2AA);
+        }
+        
+        .recent-history {
+            background: white;
+            padding: 30px;
+            border-top: 3px solid var(--light-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--primary-brown);
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--secondary-beige);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .history-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        
+        .history-date {
+            color: var(--text-dark);
+            font-size: 0.9em;
+        }
+        
+        .history-result {
+            font-weight: bold;
+            color: var(--primary-brown);
+        }
+        
+        .empty-history {
+            text-align: center;
+            color: var(--text-dark);
+            padding: 20px;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-dark);
+            font-size: 0.9em;
+            background: var(--light-bg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚖️ 哈基米暖心法庭</h1>
+            <p>用温暖化解矛盾，用理解连接彼此</p>
+        </div>
+        
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <div class="welcome-icon">🐾</div>
+                <h2>欢迎来到哈基米法庭</h2>
+                <p class="welcome-text">
+                    这是一个专为化解矛盾设计的暖心平台。通过简单的对话输入，我们将为您提供公平的责任分析和实用的修复建议，帮助双方更好地理解彼此。
+                </p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <div class="feature-title">双视角输入</div>
+                        <div class="feature-desc">支持双方分别描述事实和感受，确保公平公正</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-title">智能分析</div>
+                        <div class="feature-desc">基于情感分析技术，提供客观的责任分布评估</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">❤️</div>
+                        <div class="feature-title">暖心建议</div>
+                        <div class="feature-desc">个性化修复方案，帮助双方重建信任与理解</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="page1.html" class="btn">
+                        <i class="fas fa-play"></i> 开始新的调解
+                    </a>
+                    <a href="page3.html" class="btn btn-secondary">
+                        <i class="fas fa-history"></i> 查看历史记录
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="recent-history">
+            <h3 class="section-title">最近调解记录</h3>
+            <div class="history-list" id="recentHistory">
+                <div class="empty-history">暂无调解记录，开始第一次调解吧！</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>💕 哈基米法庭 - 让每一次矛盾都成为关系升华的契机</p>
+        </div>
+    </div>
+
+    <script>
+        // 加载最近的历史记录
+        function loadRecentHistory() {
+            const historyList = document.getElementById('recentHistory');
+            const savedHistory = JSON.parse(localStorage.getItem('hakimiHistory') || '[]');
+            
+            if (savedHistory.length === 0) {
+                historyList.innerHTML = '<div class="empty-history">暂无调解记录，开始第一次调解吧！</div>';
+                return;
+            }
+            
+            let historyHTML = '';
+            // 显示最近5条记录
+            savedHistory.slice(0, 5).forEach(record => {
+                historyHTML += `
+                    <div class="history-item">
+                        <div class="history-date">${record.date}</div>
+                        <div class="history-result">${record.nicknameA} vs ${record.nicknameB}</div>
+                    </div>
+                `;
+            });
+            
+            historyList.innerHTML = historyHTML;
+        }
+        
+        // 页面加载时执行
+        window.onload = function() {
+            loadRecentHistory();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐾 哈基米法庭 - 历史记录</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-brown: #8B7355;
+            --secondary-beige: #D2B48C;
+            --accent-tan: #DEB887;
+            --soft-cream: #F5F5DC;
+            --light-bg: #FAF0E6;
+            --text-dark: #654321;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'PingFang SC', 'Microsoft YaHei', cursive;
+            background: linear-gradient(135deg, #E6D2AA 0%, #D2B48C 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(139, 115, 85, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-brown), var(--accent-tan), var(--secondary-beige));
+        }
+        
+        .header {
+            background: linear-gradient(45deg, var(--primary-brown), var(--secondary-beige));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: var(--light-bg);
+        }
+        
+        .nav-btn {
+            background: var(--accent-tan);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--primary-brown);
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .history-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--light-bg);
+            border-radius: 10px;
+        }
+        
+        .history-stats {
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+        
+        .clear-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .history-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid var(--secondary-beige);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .history-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .history-date {
+            color: var(--text-dark);
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .history-result {
+            font-weight: bold;
+            color: var(--primary-brown);
+            font-size: 1.1em;
+        }
+        
+        .history-content {
+            margin: 10px 0;
+            padding: 10px;
+            background: var(--light-bg);
+            border-radius: 5px;
+        }
+        
+        .history-participants {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .history-fact {
+            font-size: 0.9em;
+            color: var(--text-dark);
+            line-height: 1.4;
+            margin-bottom: 5px;
+        }
+        
+        .history-fact:last-child {
+            margin-bottom: 0;
+        }
+        
+        .empty-history {
+            text-align: center;
+            color: var(--text-dark);
+            padding: 40px;
+            font-style: italic;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, var(--primary-brown), var(--secondary-beige));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 115, 85, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--accent-tan), #E6D2AA);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 调解历史记录</h1>
+            <p>查看过往的调解分析结果</p>
+        </div>
+        
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-home"></i> 返回首页
+            </a>
+            <a href="page1.html" class="nav-btn">
+                <i class="fas fa-plus"></i> 新的调解
+            </a>
+        </div>
+        
+        <div class="content">
+            <h2 class="section-title"><i class="fas fa-history"></i> 历史记录</h2>
+            
+            <div class="history-controls">
+                <div class="history-stats" id="historyStats">共 0 条记录</div>
+                <button class="clear-btn" onclick="clearAllHistory()">
+                    <i class="fas fa-trash"></i> 清空历史
+                </button>
+            </div>
+            
+            <div class="history-list" id="historyList">
+                <div class="empty-history">暂无调解记录，开始第一次调解吧！</div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="page1.html" class="btn">
+                    <i class="fas fa-plus"></i> 开始新的调解
+                </a>
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="fas fa-home"></i> 返回首页
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 加载历史记录
+        function loadHistory() {
+            const historyList = document.getElementById('historyList');
+            const historyStats = document.getElementById('historyStats');
+            const savedHistory = JSON.parse(localStorage.getItem('hakimiHistory') || '[]');
+            
+            if (savedHistory.length === 0) {
+                historyList.innerHTML = '<div class="empty-history">暂无调解记录，开始第一次调解吧！</div>';
+                historyStats.textContent = '共 0 条记录';
+                return;
+            }
+            
+            historyStats.textContent = `共 ${savedHistory.length} 条记录`;
+            
+            let historyHTML = '';
+            // 按时间倒序排列
+            savedHistory.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            savedHistory.forEach(record => {
+                const factASummary = record.factA.length > 50 ? record.factA.substring(0, 50) + '...' : record.factA;
+                const factBSummary = record.factB.length > 50 ? record.factB.substring(0, 50) + '...' : record.factB;
+                
+                historyHTML += `
+                    <div class="history-item">
+                        <div class="history-header">
+                            <div class="history-date">${record.analysisDate}</div>
+                            <div class="history-result">${record.responsibilityA}% : ${record.responsibilityB}%</div>
+                        </div>
+                        <div class="history-content">
+                            <div class="history-participants">
+                                <strong>${record.nicknameA}</strong> vs <strong>${record.nicknameB}</strong>
+                            </div>
+                            <div class="history-fact">
+                                <strong>${record.nicknameA}:</strong> ${factASummary || '未填写'}
+                            </div>
+                            <div class="history-fact">
+                                <strong>${record.nicknameB}:</strong> ${factBSummary || '未填写'}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            historyList.innerHTML = historyHTML;
+        }
+        
+        // 清空所有历史记录
+        function clearAllHistory() {
+            if (confirm('确定要清空所有历史记录吗？此操作不可撤销！')) {
+                localStorage.removeItem('hakimiHistory');
+                loadHistory();
+                alert('历史记录已清空');
+            }
+        }
+        
+        // 检查是否有需要保存的当前分析结果
+        function checkForSave() {
+            const currentAnalysis = localStorage.getItem('currentAnalysis');
+            if (currentAnalysis) {
+                const analysis = JSON.parse(currentAnalysis);
+                const savedHistory = JSON.parse(localStorage.getItem('hakimiHistory') || '[]');
+                
+                // 检查是否已存在相同记录
+                const exists = savedHistory.some(record => 
+                    record.timestamp === analysis.timestamp
+                );
+                
+                if (!exists) {
+                    savedHistory.unshift(analysis);
+                    // 只保留最近50条记录
+                    if (savedHistory.length > 50) {
+                        savedHistory.splice(50);
+                    }
+                    localStorage.setItem('hakimiHistory', JSON.stringify(savedHistory));
+                    localStorage.removeItem('currentAnalysis');
+                }
+            }
+        }
+        
+        // 页面加载时执行
+        window.onload = function() {
+            checkForSave();
+            loadHistory();
+        };
+    </script>
+</body>
+</html>
